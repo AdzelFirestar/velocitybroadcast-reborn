@@ -13,9 +13,9 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           JSON_PAYLOAD=$(cat <<EOF
-          {
-            "content": "**📦 New Release Published!**\n**Version:** ${GITHUB_REF_NAME}\n**Notes:**\n${{ github.event.release.body }}\n🔗 ${{ github.event.release.html_url }}"
-          }
+{
+  "content": "**📦 New Release Published!**\n**Version:** ${GITHUB_REF_NAME}\n**Notes:**\n${{ github.event.release.body }}\n🔗 ${{ github.event.release.html_url }}"
+}
 EOF
           )
           curl -H "Content-Type: application/json" \
