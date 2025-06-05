@@ -11,6 +11,9 @@ jobs:
       - name: Send release info to Discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_BODY: ${{ github.event.release.body }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
         run: |
           apt-get update && apt-get install -y jq
 
@@ -18,9 +21,9 @@ jobs:
             -d "$(jq -n \
               --arg username "VelocityBroadcast Reborn Update Bot" \
               --arg avatar_url "https://imgur.com/WuW15Aq.png" \
-              --arg title "${{ github.event.release.name }}" \
-              --arg description "${{ github.event.release.body }}" \
-              --arg url "${{ github.event.release.html_url }}" \
+              --arg title "$RELEASE_NAME" \
+              --arg description "$RELEASE_BODY" \
+              --arg url "$RELEASE_URL" \
               --argjson color 16711680 \
               '{
                 username: $username,
@@ -32,4 +35,4 @@ jobs:
                   color: $color
                 }]
               }')" \
-            $DISCORD_WEBHOOK
+            "$DISCORD_WEBHOOK"
