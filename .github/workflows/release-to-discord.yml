@@ -12,7 +12,8 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
+          PAYLOAD=$(jq -nc --arg content "**📦 New Release Published!**\n**Version:** ${{ github.event.release.name }}\n**Notes:**\n${{ github.event.release.body }}\n🔗 ${{ github.event.release.html_url }}" '{content: $content}')
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{\"content\": \"📦 **New Release Published!**\\n**Version:** ${{ github.event.release.name }}\\n**Notes:**\\n${{ github.event.release.body }}\\n🔗 <${{ github.event.release.html_url }}>\"}" \
+               -d "$PAYLOAD" \
                "$DISCORD_WEBHOOK"
