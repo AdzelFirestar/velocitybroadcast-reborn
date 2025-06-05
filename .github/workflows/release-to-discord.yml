@@ -1,19 +1,17 @@
-name: Notify Discord on Release
-
 on:
   release:
     types: [published]
 
 jobs:
-  notify-discord:
+  github-releases-to-discord:
     runs-on: ubuntu-latest
     steps:
-      - name: Send release info to Discord
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          PAYLOAD=$(jq -nc --arg content "**📦 New Release Published!**\n**Version:** ${{ github.event.release.name }}\n**Notes:**\n${{ github.event.release.body }}\n🔗 ${{ github.event.release.html_url }}" '{content: $content}')
-          curl -H "Content-Type: application/json" \
-               -X POST \
-               -d "$PAYLOAD" \
-               "$DISCORD_WEBHOOK"
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Github Releases To Discord
+        uses: sillyangel/releases-to-discord@v1.0.0
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          color: "16711680"
+          username: "VelocityBroadcast Reborn Update Bot"
+          avatar_url: "https://imgur.com/WuW15Aq.png"
