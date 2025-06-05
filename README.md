@@ -26,5 +26,5 @@ VelocityBroadcast Reborn is a unique and lightweight plugin that allows people w
 - /vb - When typed on its own will show the help page - No permission needed
 - /vb {message} - When typed and paired with a message, it will send a message across all servers on a network (Legacy Color Codes and MiniMessage compatible) - vb.broadcast
 - /vp prefix {new prefix} - This allows whoever has the required permission to change the prefix in front of the message broadcasted - vb.admin
-- /vb reload - Allows people with the correct permission node to reload the config if it was edited manually - vb.admin
+- /vb reload - Allows people with the correct permission node to reload the config if it was edited manually - vb.admin  
 ***Currently due to the limitations of Velocity, you can not run the commands while being opped. You MUST have the correct permission nodes for it to work.***
