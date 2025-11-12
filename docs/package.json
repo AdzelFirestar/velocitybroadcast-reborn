@@ -15,7 +15,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "postbuild": "rm -rf docs/* && cp -r build/* docs/",
+    "postbuild": "npx rimraf docs/* && cp -r build/* docs/",
     "test": "craco test --env=jsdom",
     "eject": "craco eject"
   },
