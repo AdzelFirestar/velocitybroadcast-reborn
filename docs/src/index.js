@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
-  Switch,
-  Redirect,
+  Switch
 } from 'react-router-dom'
 
 import './style.css'
@@ -15,9 +14,9 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route component={Home} exact path="/" />
-        <Route component={NotFound} path="**" />
-        <Redirect to="**" />
+        <Route exact path="/" component={Home} />
+        {/* Catch-all route for NotFound */}
+        <Route component={NotFound} />
       </Switch>
     </Router>
   )
