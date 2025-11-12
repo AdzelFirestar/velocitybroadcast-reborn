@@ -9,4 +9,9 @@ module.exports = {
       },
     },
   },
+  // Add this function to modify build output directory
+  paths: function (paths, env) {
+    paths.appBuild = paths.appPath + '/docs';
+    return paths;
+  }
 };
